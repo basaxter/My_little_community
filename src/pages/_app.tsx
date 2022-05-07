@@ -21,7 +21,7 @@ import appContext from '../context/appContext'
 import fr from '../translate/fr.json'
 import en from '../translate/en.json'
 import lightTheme from 'styles/lightTheme'
-import { StartonLayout } from 'components/Core'
+import { StartonLayout } from 'components'
 import 'nprogress/nprogress.css' //styles of nprogress
 
 const StartonApp: NextComponentType<AppContext, AppInitialProps, AppProps> = (appProps: AppProps) => {

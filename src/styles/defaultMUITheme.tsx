@@ -41,6 +41,9 @@ const defaultMUITheme: ThemeOptions = {
 			'"Segoe UI Symbol"',
 			'sans-serif',
 		].join(', '),
+		body1: {
+			fontWeight: 800,
+		},
 	},
 	breakpoints: {
 		values: {

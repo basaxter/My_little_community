@@ -7,13 +7,13 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import { useTranslation } from 'react-i18next'
-import { StartonButton } from 'components/Core'
+import { StartonButton } from '@components'
 import { makeStyles } from '@material-ui/styles'
 import { useWeb3React } from '@web3-react/core'
 import { Web3Provider } from '@ethersproject/providers'
 import clsx from 'clsx'
-import { injected, walletconnect, walletlink } from './Web3Connectors'
 import { StartonCard } from '../StartonCard'
+import { injected, walletconnect, walletlink } from './Web3Connectors'
 
 type StyleProps = Record<string, string | number>
 type StyleClassKey =

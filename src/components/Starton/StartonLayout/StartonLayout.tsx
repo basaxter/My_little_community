@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { AppProps } from 'next/app'
 import { Container, Theme, Paper } from '@material-ui/core'
-import { StartonNavBar } from 'components/Core'
+import { StartonNavBar } from 'components'
 import { makeStyles } from '@material-ui/styles'
 
 type StyleProps = Record<string, string>
@@ -31,7 +31,6 @@ const StartonLayout: React.FC<AppProps> = ({ Component, pageProps }: AppProps) =
 
 	return (
 		<Container className={classes.container}>
-			<StartonNavBar />
 			<Paper className={classes.paper}>
 				<Component {...pageProps} />
 			</Paper>

@@ -4,13 +4,13 @@ const lightTheme: ThemeOptions = {
 	palette: {
 		type: 'light',
 		primary: {
-			main: '#009DFF',
+			main: '#000000',
 			light: '#00D0FF',
-			dark: '#0073FF',
+			dark: '#2B2A2A',
 			contrastText: '#FFFFFF',
 		},
 		secondary: {
-			main: '#0045FF',
+			main: '#FFFFFF',
 			light: '#0078FF',
 			dark: '#001BFF',
 			contrastText: '#FFFFFF',
@@ -51,12 +51,34 @@ const lightTheme: ThemeOptions = {
 			'sans-serif',
 		].join(', '),
 		h1: {},
-		h2: {},
-		h3: {},
-		h4: {},
-		h5: {},
-		h6: {},
-		button: {},
+		h2: {
+			fontWeight: 700,
+		},
+		h3: {
+			fontWeight: 700,
+		},
+		h4: {
+			fontWeight: 700,
+		},
+		h5: {
+			fontWeight: 700,
+		},
+		h6: {
+			fontWeight: 700,
+		},
+		body1: {
+			fontWeight: 800,
+			fontSize: 12,
+		},
+		body2: {
+			fontSize: 12,
+		},
+		button: {
+			fontSize: 24,
+			fontWeight: 400,
+			fontFamily: 'Helvetica Neue',
+			textTransform: 'none',
+		},
 	},
 	breakpoints: {
 		values: {
@@ -82,7 +104,11 @@ const lightTheme: ThemeOptions = {
 		},
 		MuiButton: {
 			root: {
-				borderRadius: 15,
+				borderRadius: 999,
+				paddingTop: 15,
+				paddingBottom: 15,
+				paddingLeft: 82,
+				paddingRight: 82,
 			},
 		},
 		MuiPaper: {

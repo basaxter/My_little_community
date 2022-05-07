@@ -1,87 +1,98 @@
 import * as React from 'react'
-import { Theme, Box, Paper, Grid, Typography, useTheme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
-import StartonCardWeb3Provider from 'components/Core/StartonCardWeb3Provider'
+import Image from 'next/image'
+import { Header, CaptionedImage, PricedImage, Footer } from '@components';
+import { Typography, Link, Button } from '@material-ui/core'
+// import Link from '@mui/material/Link';
 
-export interface IComponentProps {}
-
-type StyleProps = Record<string, string>
-type StyleClassKey = 'container' | 'cardSigning' | 'image' | 'pannelTitle'
-
-const useStyles = makeStyles<Theme, StyleProps, StyleClassKey>((theme) => ({
-	container: {
+const HomePage: React.FC = () => {
+	return (
+		<React.Fragment>
+			<Header />
+			<div className="w-screen h-full flex flex-col justify-center items-center flex-nowrap bg-white pt-8 px-9 w">
+				<Image src="/images/nike_quote.jpg" alt="nextjs" width="1344" height="700" />
+				<Typography variant="h2" className="my-9">
+					Nike our vision of Community
+				</Typography>
+				<Link href="#" underline="always" color="textPrimary" variant="h6">
+					{'Go to our community eshop'}
+				</Link>
+				<div className="flex flex-row justify-between mt-8 w-full my">
+					<CaptionedImage
+						width={675}
+						height={700}
+						src="/images/nike_shoes.jpg"
+						caption="Sport with Lebron James"
+					/>
+					<CaptionedImage
+						width={675}
+						height={700}
+						src="/images/nike_nba_shoot.jpg"
+						caption="New look with our Designer"
+					/>
+				</div>
+				<Button variant="contained" color="primary" className="mt-16 mb-10" disableRipple>
+					How to participate
+				</Button>
+				<Typography variant="h4" className="my-9">
+					Our Next Event
+				</Typography>
+				<div className="flex flex-row justify-between mt-8 w-full my">
+					<CaptionedImage
+						width={440}
+						height={293}
+						src="/images/nike_atelier.jpg"
+						caption="Visit the Nike Gallery"
+					/>
+					<CaptionedImage
+						width={440}
+						height={293}
+						src="/images/nike_white_shoes.jpg"
+						caption="Win the Sneaker of your 16 Birthday"
+					/>
+					<CaptionedImage
+						width={440}
+						height={293}
+						src="/images/nike_happy_birthday.jpg"
+						caption="Take your invitation for the 60th Birthday"
+					/>
+				</div>
+				<Typography variant="h2" className="my-9 px-64 text-center">
+					Take part to the important decision
+				</Typography>
+				<Image src="/images/nike_yoga.jpg" alt="nextjs" width="1344" height="700" />
+				<Button variant="contained" color="primary" className="mt-16 mb-10" disableRipple>
+					Choose your cause
+				</Button>
+				<Typography variant="h2" className="px-64 text-center">
+					Be Loyal
+				</Typography>
+				<Typography variant="h2" className="px-64 text-center">
+					Be Rewarded
+				</Typography>
+				<Typography variant="h6" className="pt-14">
+					Our New Community Eshop
+				</Typography>
+				<Image src="/images/nike_sneakers.jpg" alt="nextjs" width="1344" height="700" />
+				<Typography variant="h6" className="pt-14 place-self-start">
+					Popular Right Now
+				</Typography>
+				<div className="flex flex-row justify-between mt-4 w-full my">
+					<PricedImage width={440} height={440} src="/images/nike_purple_sportfit.jpg" price="10.00" />
+					<PricedImage width={440} height={440} src="/images/nike_yellow_outfit.jpg" price="70.00" />
+					<PricedImage width={440} height={440} src="/images/nike_orange_shirt.jpg" price="190.00" />
+				</div>
+			</div>
+			<Footer />
+		</React.Fragment>
+	)
+}
+/*
 		width: '100%',
 		height: '100vh',
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
 		flexWrap: 'nowrap',
-	},
-	cardSigning: {
-		display: 'flex',
-		justifyContent: 'start',
-		alignItems: 'center',
-		[theme.breakpoints.down('lg')]: {
-			justifyContent: 'center',
-			alignItems: 'center',
-		},
-	},
-	image: {
-		[theme.breakpoints.up('md')]: {
-			textAlign: 'center',
-		},
-	},
-	pannelTitle: {
-		[theme.breakpoints.down('xl')]: {
-			fontSize: '2.3em',
-		},
-	},
-}))
-
-const HomePage: React.FC = () => {
-	const theme = useTheme()
-	const classes = useStyles({} as StyleProps)
-
-	return (
-		<React.Fragment>
-			<Paper className={classes.container}>
-				<Grid container>
-					<Box
-						className={classes.image}
-						component={Grid}
-						//@ts-ignore
-						item
-						md={5}
-						lg={5}
-						xl={6}
-						display={{ xs: 'none', sm: 'none', md: 'none', lg: 'block' }}
-					>
-						{theme.palette.type === 'dark' ? (
-							<img
-								style={{ display: 'inline-block' }}
-								alt="logo Light"
-								src="/images/logo-light-left-shadow.png"
-								width={600}
-							/>
-						) : (
-							<img
-								style={{ display: 'inline-block' }}
-								alt="logo Dark"
-								src="/images/logo-mono-left-shadow.png"
-								width={600}
-							/>
-						)}
-						<Typography variant="h3" className={classes.pannelTitle}>
-							Blockchain made simple
-						</Typography>
-					</Box>
-					<Grid item className={classes.cardSigning} xs={12} sm={12} md={12} lg={7} xl={6}>
-						<StartonCardWeb3Provider />
-					</Grid>
-				</Grid>
-			</Paper>
-		</React.Fragment>
-	)
-}
+*/
 
 export default HomePage
