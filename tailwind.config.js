@@ -1,11 +1,15 @@
 module.exports = {
-    purge: ["./pages/**/*.tsx", "./src/**/*.tsx"],
-    darkMode: false, // or 'media' or 'class'
-    theme: {
-        extend: {},
-    },
-    variants: {
-        extend: {},
-    },
-    plugins: [],
-};
+	important: true,
+	future: {
+		removeDeprecatedGapUtilities: true,
+		purgeLayersByDefault: true,
+	},
+	purge: [
+		'./src/components/**/*.{js,ts,jsx,tsx}',
+		'./src/pages/**/*.{js,ts,jsx,tsx}',
+		'./src/containers/**/*.{js,ts,jsx,tsx}',
+	],
+	theme: {},
+	variants: {},
+	plugins: [],
+}
