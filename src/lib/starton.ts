@@ -8,6 +8,12 @@ const startonHttp = axios.create({
 	},
 })
 
+export enum NFTMetadataURI {
+	NikePartner = 'QmWVuRp6YU9uhpqeB32QcbH8mBrxntD6CYG4wojv1KsjWU',
+	EventProgram = 'Qmf2bNjkh8tEDGtTL9aQdzLrXE4UGuSkSQLHau7R1zXe5G',
+	ImpactProgram = 'QmaT8sxZNgsQ7hhaHeCwmccfMsXQxC3zBTTcHWEsVyqQXe',
+}
+
 export const sendCoins = async (address: string): Promise<any> => {
 	const result = await startonHttp.post(
 		'/smart-contract/polygon-mumbai/0xC100c6365fD8cA6A1dD702ce3064A2CBcEAB955e/call',
@@ -36,7 +42,34 @@ export const getCoins = async (address: string): Promise<number> => {
 	return 0
 }
 
-// removeCoins() => {}
+export const burnCoins = async (address: string, amount: number): Promise<any> => {
+	const result = await startonHttp.post(
+		'/smart-contract/polygon-mumbai/0xC100c6365fD8cA6A1dD702ce3064A2CBcEAB955e/call',
+		{
+			functionName: 'burn',
+			signerWallet: address,
+			speed: 'low',
+			params: [address, amount + '000000000000000000'],
+		},
+	)
+	console.log(result)
+	return 0
+}
+
+export const createNFT = async (address: string, metadata: NFTMetadataURI): Promise<any> => {
+	console.log(address, metadata)
+	const result = await startonHttp.post(
+		'/smart-contract/polygon-mumbai/0x41f8e93B2F888d55EBa005C8289266609CfAfFD3/call',
+		{
+			functionName: 'safeMint',
+			signerWallet: '0xD7C53956a0A3F99088Acf97C2be44C73064F493C',
+			speed: 'low',
+			params: [address, metadata],
+		},
+	)
+	console.log(result)
+	return 0
+}
 
 // getNFT() => {}
 

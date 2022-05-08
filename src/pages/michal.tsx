@@ -4,7 +4,7 @@ import Router from 'next/router'
 import { Header, Footer } from '@components'
 import { User } from '@types'
 import { GetServerSidePropsResult } from 'next'
-import { sendCoins, getCoins } from '@lib/starton'
+import { sendCoins, getCoins, burnCoins, NFTMetadataURI, createNFT } from '@lib/starton'
 
 interface Props {
 	currentUser: User
@@ -13,13 +13,19 @@ interface Props {
 const EarnPage: React.FC<Props> = ({ currentUser }) => {
 	const [result, setResult] = useState('')
 
-	const handleCoinsClaim = async () => {
-		const result = await sendCoins('0xD7C53956a0A3F99088Acf97C2be44C73064F493C')
+	// const handleCoinsClaim = async () => {
+	// 	const result = await sendCoins('0xD7C53956a0A3F99088Acf97C2be44C73064F493C')
+	// 	console.log('result = ', result)
+	// 	setResult('titototoot')
+	// }
+
+	const test = async () => {
+		const result = await burnCoins('0xD7C53956a0A3F99088Acf97C2be44C73064F493C', 80)
 		console.log('result = ', result)
 		setResult('titototoot')
 	}
 
-	handleCoinsClaim()
+	test()
 	return (
 		<React.Fragment>
 			<Header currentUser={currentUser} />
