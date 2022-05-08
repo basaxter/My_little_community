@@ -23,6 +23,7 @@ import en from '../translate/en.json'
 import lightTheme from 'styles/lightTheme'
 import { StartonLayout } from 'components'
 import 'nprogress/nprogress.css' //styles of nprogress
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 const StartonApp: NextComponentType<AppContext, AppInitialProps, AppProps> = (appProps: AppProps) => {
 	const locale = useRouter()
@@ -50,40 +51,44 @@ const StartonApp: NextComponentType<AppContext, AppInitialProps, AppProps> = (ap
 	const [theme, setTheme] = React.useState<ThemeOptions>(lightTheme)
 	const [isVerified, setVerified] = React.useState<boolean>(false)
 
+	const queryClient = new QueryClient()
+
 	// Render
 	// ----------------------------------------------------------------------------
 	return (
-		<React.Fragment>
-			<Head>
-				<meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-			</Head>
-			{/*@ts-ignore*/}
-			<appContext.Provider value={{ theme, setTheme, isVerified, setVerified }}>
-				<MuiPickersUtilsProvider utils={MomentUtils}>
-					<ThemeProvider
-						theme={createTheme(
-							{
-								...theme,
-							},
-							locale.locale === 'fr' ? frFR : enUS,
-						)}
-					>
-						<SnackbarProvider
-							anchorOrigin={{
-								vertical: 'bottom',
-								horizontal: 'right',
-							}}
-							maxSnack={3}
+		<QueryClientProvider client={queryClient}>
+			<React.Fragment>
+				<Head>
+					<meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+				</Head>
+				{/*@ts-ignore*/}
+				<appContext.Provider value={{ theme, setTheme, isVerified, setVerified }}>
+					<MuiPickersUtilsProvider utils={MomentUtils}>
+						<ThemeProvider
+							theme={createTheme(
+								{
+									...theme,
+								},
+								locale.locale === 'fr' ? frFR : enUS,
+							)}
 						>
-							<CssBaseline />
-							<Web3ReactProvider getLibrary={getLibrary}>
-								<StartonLayout {...appProps} />
-							</Web3ReactProvider>
-						</SnackbarProvider>
-					</ThemeProvider>
-				</MuiPickersUtilsProvider>
-			</appContext.Provider>
-		</React.Fragment>
+							<SnackbarProvider
+								anchorOrigin={{
+									vertical: 'bottom',
+									horizontal: 'right',
+								}}
+								maxSnack={3}
+							>
+								<CssBaseline />
+								<Web3ReactProvider getLibrary={getLibrary}>
+									<StartonLayout {...appProps} />
+								</Web3ReactProvider>
+							</SnackbarProvider>
+						</ThemeProvider>
+					</MuiPickersUtilsProvider>
+				</appContext.Provider>
+			</React.Fragment>
+		</QueryClientProvider>
 	)
 }
 

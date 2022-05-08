@@ -1,13 +1,31 @@
 import * as React from 'react'
 import Image from 'next/image'
-import { Header, CaptionedImage, PricedImage, Footer } from '@components';
+import { Header, CaptionedImage, PricedImage, Footer } from '@components'
 import { Typography, Link, Button } from '@material-ui/core'
+import { User } from './api/user'
+import { useQuery } from 'react-query'
 // import Link from '@mui/material/Link';
 
 const HomePage: React.FC = () => {
+	const user: User = useQuery(['user'], () =>
+		fetch('api/user', {
+			method: 'post',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ login: 'leos.julien@gmail.com' }),
+		}).then((res) => {
+			if (res.status !== 200) {
+				throw new Error('User not found')
+			}
+			return res.json()
+		}),
+	).data
+
 	return (
 		<React.Fragment>
-			<Header />
+			<Header user={user} />
 			<div className="w-screen h-full flex flex-col justify-center items-center flex-nowrap bg-white pt-8 px-9 w">
 				<Image src="/images/nike_quote.jpg" alt="nextjs" width="1344" height="700" />
 				<Typography variant="h2" className="my-9">
