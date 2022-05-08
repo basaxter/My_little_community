@@ -7,6 +7,7 @@ import { User } from 'pages/api/user'
 
 interface Props {
 	user?: User
+	userMoneyAmount: number
 }
 
 export const Header: React.FC<Props> = (props: Props) => {
@@ -18,6 +19,13 @@ export const Header: React.FC<Props> = (props: Props) => {
 				</Link>
 			</div>
 			<div className="w-full flex justify-end">
+				<div className="flex flex-col justify-center items-center mr-6">
+					<Typography variant="body2">{props.userMoneyAmount}.00</Typography>
+					<div className="flex justify-center w-16">
+						<Image src="/images/logoNike.svg" alt="nextjs" width="27" height="10" className="pr-1" />
+						<span className="font-medium pl-1">SDR</span>
+					</div>
+				</div>
 				<Avatar alt="Remy Sharp" src="/images/avatar.png" />
 				<div className="flex flex-col justify-center ml-3">
 					<Typography variant="body1">

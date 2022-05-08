@@ -2,11 +2,14 @@ import * as React from 'react'
 import Image from 'next/image'
 import { Header, CaptionedImage, PricedImage, Footer } from '@components'
 import { Typography, Link, Button } from '@material-ui/core'
-import { User } from './api/user'
 import { useQuery } from 'react-query'
+import { GetServerSidePropsResult } from 'next'
+import { getCoins } from '@lib/starton'
+import { User } from './api/user'
+
 // import Link from '@mui/material/Link';
 
-const HomePage: React.FC = () => {
+const HomePage: React.FC = ({ userMoneyAmount }) => {
 	const user: User = useQuery(['user'], () =>
 		fetch('api/user', {
 			method: 'post',
@@ -25,7 +28,7 @@ const HomePage: React.FC = () => {
 
 	return (
 		<React.Fragment>
-			<Header user={user} />
+			<Header user={user} userMoneyAmount={userMoneyAmount} />
 			<div className="w-screen h-full flex flex-col justify-center items-center flex-nowrap bg-white pt-8 px-9 w">
 				<Image src="/images/nike_quote.jpg" alt="nextjs" width="1344" height="700" />
 				<Typography variant="h2" className="my-9">
@@ -77,7 +80,6 @@ const HomePage: React.FC = () => {
 				<Typography variant="h2" className="my-9 px-64 text-center">
 					Take part to the important decision
 				</Typography>
-				<Image src="/images/nike_yoga.jpg" alt="nextjs" width="1344" height="700" />
 				<Button variant="contained" color="primary" className="mt-16 mb-10" disableRipple>
 					Choose your cause
 				</Button>
@@ -104,13 +106,16 @@ const HomePage: React.FC = () => {
 		</React.Fragment>
 	)
 }
-/*
-		width: '100%',
-		height: '100vh',
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center',
-		flexWrap: 'nowrap',
-*/
+
+export async function getServerSideProps(): Promise<GetServerSidePropsResult<Props>> {
+	// Call API get current User
+	const userMoneyAmount = await getCoins('0xD7C53956a0A3F99088Acf97C2be44C73064F493C')
+
+	return {
+		props: {
+			userMoneyAmount,
+		},
+	}
+}
 
 export default HomePage
