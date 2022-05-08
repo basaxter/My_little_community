@@ -12,12 +12,15 @@ Nous avons perdu deux membres en cours de route 😉
 ## Probleme
 
 Notre objectif est de créer un sentiment d’engagement de communauté pour les marques.
+
 Répondre au besoin d’accessibilité au web3.0 sur mesure pour les marques.
 
 ## Solution
 
 Fournir au marque une plateforme en marque blanche lancer leurs démarche de communauté dans un univers web 3.0
+
 Nous utilisons un systeme de Token, de NFT et de Smart Contact.
+
 Notre plus grand défi, fournir au marque une solution clé en main vers l’univers du web 3.0
 
 ## Installation
